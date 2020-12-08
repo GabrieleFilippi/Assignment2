@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import it.unipd.tos.model.MenuItem;
 import it.unipd.tos.model.User;
+import it.unipd.tos.business.TotalBill;
 import it.unipd.tos.business.exception.TakeAwayBillException;
 
 public class TakeAwayTest {
@@ -67,5 +68,14 @@ public class TakeAwayTest {
 		list.add(new MenuItem(MenuItem.type.Gelato,"Armadillo",5.00));
 		total = bill.getOrderPrice(list, user);
 		assertEquals(26.50,total,Diff);
+	}
+
+	@Test
+	public void discount10Test() throws TakeAwayBillException {
+		list.add(new MenuItem(MenuItem.type.Budino,"Cameo",30.00));
+		list.add(new MenuItem(MenuItem.type.Gelato,"BananaSplit",25.00));
+		list.add(new MenuItem(MenuItem.type.Bevanda,"7up",5.00));
+		total = bill.getOrderPrice(list, user);
+		assertEquals(54,total,Diff);
 	}
 }
