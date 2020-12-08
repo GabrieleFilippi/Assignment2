@@ -6,6 +6,7 @@ package it.unipd.tos.business;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -54,5 +55,17 @@ public class TakeAwayTest {
         list.add(new MenuItem(MenuItem.type.Budino,"Pino",3.50));
 		list.add(null);
         total = bill.getOrderPrice(list,user);
-    }
+	}
+	
+	@Test
+	public void discount50Test() throws TakeAwayBillException {
+		list.add(new MenuItem(MenuItem.type.Gelato,"Panna",5.00));
+		list.add(new MenuItem(MenuItem.type.Gelato,"MaxiGusto",5.00));
+		list.add(new MenuItem(MenuItem.type.Gelato,"GenioBlu",5.00));
+		list.add(new MenuItem(MenuItem.type.Gelato,"Amarena",3.00));
+		list.add(new MenuItem(MenuItem.type.Gelato,"PizzaPazza",5.00));
+		list.add(new MenuItem(MenuItem.type.Gelato,"Armadillo",5.00));
+		total = bill.getOrderPrice(list, user);
+		assertEquals(26.50,total,Diff);
+	}
 }
