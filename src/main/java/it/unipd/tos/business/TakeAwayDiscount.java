@@ -45,6 +45,10 @@ public class TakeAwayDiscount implements TakeAwayBill {
         if (IcePud > 50) {
             total -= total * 0.1;
         }
+        //limite30
+        if (itemsOrdered.size() > 30) {
+            throw new TakeAwayBillException("La lista supera il massimo di 30 elementi");
+        }
         return total;
     }
 }

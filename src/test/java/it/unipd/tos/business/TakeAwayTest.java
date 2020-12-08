@@ -78,4 +78,12 @@ public class TakeAwayTest {
 		total = bill.getOrderPrice(list, user);
 		assertEquals(54,total,Diff);
 	}
+
+	@Test(expected = TakeAwayBillException.class) 
+	public void max30Test() throws TakeAwayBillException {
+		for(int i=0; i<32; i++) {
+			list.add(new MenuItem(MenuItem.type.Gelato,"BananaSplit",5.00));
+		}
+		total = bill.getOrderPrice(list,user);
+	}
 }
